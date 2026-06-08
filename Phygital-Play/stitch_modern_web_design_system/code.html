@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cat AI | The Future of Phygital Play</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Outfit:wght@400;600;700;800&amp;family=Rubik:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#d97706",
+                        "primary-container": "#d97706",
+                        "on-primary": "#ffffff",
+                        "background": "#ffffff",
+                        "surface": "#ffffff",
+                        "surface-variant": "#f8fafc",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f8fafc",
+                        "surface-container-high": "#f1f5f9",
+                        "on-surface": "#0f172a",
+                        "on-surface-variant": "#475569",
+                        "muted": "#64748b",
+                        "outline": "#e2e8f0",
+                        "outline-variant": "#cbd5e1",
+                        "success": "#10b981",
+                        "secondary": "#475569"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "xs": "4px",
+                        "xl": "48px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "section": "120px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+                        "h1": ["Plus Jakarta Sans", "sans-serif"],
+                        "h2": ["Plus Jakarta Sans", "sans-serif"],
+                        "h3": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "label-caps": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["0.875rem", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["1rem", {"lineHeight": "1.65", "fontWeight": "400"}],
+                        "h1": ["56px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+                        "h2": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h3": ["1.25rem", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "headline-md": ["1.5rem", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "label-caps": ["0.75rem", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #ffffff; color: #0f172a; scroll-behavior: smooth; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); }
+        .amber-glow { filter: drop-shadow(0 0 12px rgba(217, 119, 6, 0.2)); }
+        .soft-shadow { box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05); }
+        .soft-shadow:hover { box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08); }
+    </style>
+</head>
+<body class="font-body-md text-on-surface overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-white/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-gutter h-16">
+<div class="font-headline-md text-headline-md font-bold text-primary">Cat AI</div>
+<div class="hidden md:flex gap-xl">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#ecosystem">Ecosystem</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#market">Market</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#roadmap">Roadmap</a>
+<a class="font-body-md text-body-md text-primary font-bold border-b-2 border-primary pb-1" href="#investors">Inquiry</a>
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-bold hover:opacity-80 transition-opacity">
+            Pitch Deck
+        </button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative pt-48 pb-section px-lg max-w-container-max mx-auto text-center">
+<div class="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[140px] -z-10"></div>
+<div class="inline-block px-md py-xs rounded-full bg-primary/5 border border-primary/10 text-primary font-label-caps text-label-caps mb-md uppercase tracking-widest">
+        The Next Generation of Phygital Technology
+    </div>
+<h1 class="font-h1 text-h1 md:text-[72px] mb-md tracking-tight text-on-surface">
+        The Future of <span class="text-primary amber-glow">Phygital Play</span>
+</h1>
+<p class="max-w-2xl mx-auto text-muted font-body-md text-lg mb-xl leading-relaxed">
+        Bridging physical reality with digital intelligence in the heart of Phnom Penh's booming tech landscape. A cohesive ecosystem designed for the modern pet owner and high-growth investor.
+    </p>
+<div class="flex flex-col sm:flex-row justify-center gap-md">
+<button class="bg-primary text-on-primary px-xl py-4 rounded-lg font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all">
+            View Pitch Deck
+        </button>
+<button class="bg-white border border-outline px-xl py-4 rounded-lg text-on-surface font-semibold hover:bg-surface-container-low transition-colors">
+            Explore Roadmap
+        </button>
+</div>
+</header>
+<!-- Ecosystem Section -->
+<section class="py-section px-lg max-w-container-max mx-auto" id="ecosystem">
+<div class="text-center mb-xl">
+<h2 class="font-h2 text-h2 mb-sm">A Triple-Threat Ecosystem</h2>
+<p class="text-muted max-w-xl mx-auto">Innovative hardware and software working in harmony for a seamless phygital experience.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+<!-- Card 1 -->
+<div class="bg-white soft-shadow rounded-xl p-lg transition-all duration-300 border border-transparent hover:border-primary/10">
+<div class="w-14 h-14 bg-primary/5 rounded-xl flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="hardware">hardware</span>
+</div>
+<h3 class="font-h3 text-h3 mb-sm">Smart Collar</h3>
+<p class="text-muted font-body-sm text-body-sm mb-lg">
+                Advanced bio-metric hardware tracking health, location, and behavior patterns in real-time.
+            </p>
+<div class="h-48 bg-surface-container-low rounded-lg overflow-hidden group">
+<img alt="Smart Collar" class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500" data-alt="A sleek, futuristic smart pet collar with glowing amber LED accents, displayed on a minimalist dark metallic stand. The lighting is moody and professional, emphasizing the high-tech materials and sophisticated design. The background is a soft-focus laboratory setting with deep obsidian and violet tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm3hL6NVlw_hgr87iH7amXVxLm3V_DS1sONBonUQwACMc_VLsMVn_rplroKovZ0yAKY-MXk0YEnsZmcE9qV0RTcQX8gUY-C548SyubeqjXHWuUl22rYWg2OufAexUQjdsbLCPW1Uanx9gACLuyVpniprYMiMNm9MgzIZf-AfJxC075jcvBtRntHr9jqPse_rrU53u9evdcySSCdc8QsGFXdzzAgyMMKmurTmcAHAFAoJHNku1bp9rk5m0oQbC2Cpxgq6nZ3lm-RpvB"/>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white soft-shadow rounded-xl p-lg transition-all duration-300 border border-transparent hover:border-primary/10">
+<div class="w-14 h-14 bg-primary/5 rounded-xl flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="smart_toy">smart_toy</span>
+</div>
+<h3 class="font-h3 text-h3 mb-sm">AI Virtual Pet</h3>
+<p class="text-muted font-body-sm text-body-sm mb-lg">
+                The companion app that transforms your physical pet's data into a gamified digital identity.
+            </p>
+<div class="h-48 bg-surface-container-low rounded-lg overflow-hidden group">
+<img alt="AI Mobile App" class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500" data-alt="A close-up of a high-end smartphone screen displaying a vibrant, stylized 3D cat avatar with neon amber outlines. The app interface is sleek, using glassmorphic UI elements and dark mode aesthetics. The surrounding environment is a modern, dimly lit smart home with violet and gold ambient lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA0H1wv1I8RDINQltNChFxT0zwPm90Mr6RG0AhULSqmfTbdIgVA1z_0gbqsvQarUJbRXFQYYgvioEiD5U_UX6d4y4Fjkt9s00F70cUWwdYfmLDfJ3E9tPwy-tN6ym_GVqBi79OWQLIO9G8mJLDROUEcVDUjDVim1IIvF5Cq_bKClDaNLvTqph5ZFpwjj7oXD17VCQ0GEy3lKRuvtVlMnrOnOylM5rGZc_NBDtQC8m1Uhx9BRumaSauXzgsqAVpDni-Q9Pl0TaVHqjS"/>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white soft-shadow rounded-xl p-lg transition-all duration-300 border border-transparent hover:border-primary/10">
+<div class="w-14 h-14 bg-primary/5 rounded-xl flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="storefront">storefront</span>
+</div>
+<h3 class="font-h3 text-h3 mb-sm">Physical Hubs</h3>
+<p class="text-muted font-body-sm text-body-sm mb-lg">
+                Exclusive retail spaces in Phnom Penh offering holistic care and community networking events.
+            </p>
+<div class="h-48 bg-surface-container-low rounded-lg overflow-hidden group">
+<img alt="Retail Hub" class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500" data-alt="An ultra-modern retail interior with curved walls, integrated amber strip lighting, and minimalist display units. The atmosphere is premium and futuristic, resembling a high-end technology boutique. Large glass windows reveal a blurred cityscape of Phnom Penh at dusk, with the space filled with clean lines and obsidian surfaces." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw9pTqywB3lc6qg8TQK5xq4log7AVhkGu6DglQ1toRwteb2T3X2t4HBnjT2wmF4_faxFWzUZqoe6dVgT8LqjC3mca-ZP0ALEqIu-GE75Yb6HQZztpvIy693oP4ik1XcKSoo0ZAe5-pdtcHjhPNgHFytoD9QY89ppEq5QWLDllwTIDdbwPAYCwJxugg1h9LAffjRuiTrsWOk-qfbwhqTRvwOXyn81j6go8zoSaJ5GNwNWUttDxNckkY2wXaNO4rTuKRkacFlZ1Kyrr_"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Market Opportunity -->
+<section class="py-section px-lg max-w-container-max mx-auto" id="market">
+<div class="bg-surface-container-low p-xl rounded-2xl border border-outline relative overflow-hidden">
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px] -mr-48 -mt-48"></div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-xl items-center relative z-10">
+<div>
+<h2 class="font-h2 text-h2 mb-md text-on-surface">Cambodia Market Opportunity</h2>
+<p class="text-on-surface-variant mb-xl text-lg leading-relaxed">
+                    With a rapidly growing middle class and a technology-first youth population, Phnom Penh represents the perfect launchpad for the Phygital revolution in Southeast Asia.
+                </p>
+<div class="flex flex-wrap gap-md">
+<div class="px-md py-sm rounded-full bg-white border border-primary/20 flex items-center gap-sm soft-shadow">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="text-on-surface font-bold">24% CAGR</span>
+</div>
+<div class="px-md py-sm rounded-full bg-white border border-primary/20 flex items-center gap-sm soft-shadow">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="text-on-surface font-bold">$1.2B Sector</span>
+</div>
+<div class="px-md py-sm rounded-full bg-white border border-primary/20 flex items-center gap-sm soft-shadow">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="text-on-surface font-bold">78% Adoption</span>
+</div>
+</div>
+</div>
+<div class="bg-white p-lg rounded-xl soft-shadow border border-outline-variant/30">
+<div class="border-l-4 border-primary pl-lg py-md">
+<p class="italic text-on-surface font-body-md text-xl mb-sm leading-relaxed">"The integration of AI and IoT in the pet industry is no longer a luxury, but an essential evolution of urban lifestyle."</p>
+<cite class="text-primary font-bold not-italic block mt-md">— Phygital Trends Report 2024</cite>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Roadmap Section -->
+<section class="py-section px-lg max-w-container-max mx-auto" id="roadmap">
+<h2 class="font-h2 text-h2 mb-xl text-center">Development Roadmap</h2>
+<div class="relative mt-20">
+<div class="absolute left-1/2 -translate-x-1/2 h-full w-[2px] bg-outline-variant hidden md:block"></div>
+<!-- Phase 1 -->
+<div class="flex flex-col md:flex-row items-center mb-xl">
+<div class="md:w-1/2 md:pr-xl md:text-right mb-md md:mb-0">
+<h3 class="font-headline-md text-primary mb-xs">Phase 1: Seed</h3>
+<p class="text-muted">MVP development, core IoT architecture, and initial market pilot in Phnom Penh's BKK1 district.</p>
+</div>
+<div class="w-5 h-5 rounded-full bg-primary ring-4 ring-primary/10 z-10 hidden md:block"></div>
+<div class="md:w-1/2 md:pl-xl">
+<span class="text-on-surface-variant font-bold text-lg">Q3 2024</span>
+</div>
+</div>
+<!-- Phase 2 -->
+<div class="flex flex-col md:flex-row items-center mb-xl">
+<div class="md:w-1/2 md:pr-xl md:text-right order-2 md:order-1">
+<span class="text-on-surface-variant font-bold text-lg">Q1 2025</span>
+</div>
+<div class="w-5 h-5 rounded-full bg-primary ring-4 ring-primary/10 z-10 hidden md:block order-2"></div>
+<div class="md:w-1/2 md:pl-xl mb-md md:mb-0 order-1 md:order-3">
+<h3 class="font-headline-md text-primary mb-xs">Phase 2: Scale</h3>
+<p class="text-muted">National rollout, strategic retail partnerships, and AI avatar integration features.</p>
+</div>
+</div>
+<!-- Phase 3 -->
+<div class="flex flex-col md:flex-row items-center">
+<div class="md:w-1/2 md:pr-xl md:text-right mb-md md:mb-0">
+<h3 class="font-headline-md text-primary mb-xs">Phase 3: Series A</h3>
+<p class="text-muted">Regional expansion to Bangkok and Ho Chi Minh City, global ecosystem marketplace launch.</p>
+</div>
+<div class="w-5 h-5 rounded-full bg-primary ring-4 ring-primary/10 z-10 hidden md:block"></div>
+<div class="md:w-1/2 md:pl-xl">
+<span class="text-on-surface-variant font-bold text-lg">Q4 2025</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact / Investor Inquiry Section -->
+<section class="py-section px-lg" id="investors">
+<div class="max-w-[800px] mx-auto bg-surface-container-low soft-shadow rounded-2xl p-xl border border-outline">
+<h2 class="font-h2 text-h2 mb-md text-center">Investor Inquiry</h2>
+<p class="text-on-surface-variant text-center mb-xl">Request full financial projections and our comprehensive investment memorandum.</p>
+<form class="space-y-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="space-y-sm">
+<label class="font-label-caps text-on-surface-variant uppercase tracking-wider text-xs">Full Name</label>
+<input class="w-full bg-white border border-outline rounded-lg p-md text-on-surface placeholder:text-muted focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="John Doe" type="text"/>
+</div>
+<div class="space-y-sm">
+<label class="font-label-caps text-on-surface-variant uppercase tracking-wider text-xs">Organization</label>
+<input class="w-full bg-white border border-outline rounded-lg p-md text-on-surface placeholder:text-muted focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="Venture Capital" type="text"/>
+</div>
+</div>
+<div class="space-y-sm">
+<label class="font-label-caps text-on-surface-variant uppercase tracking-wider text-xs">Email Address</label>
+<input class="w-full bg-white border border-outline rounded-lg p-md text-on-surface placeholder:text-muted focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="invest@catal.ai" type="email"/>
+</div>
+<div class="space-y-sm">
+<label class="font-label-caps text-on-surface-variant uppercase tracking-wider text-xs">Message (Optional)</label>
+<textarea class="w-full bg-white border border-outline rounded-lg p-md text-on-surface placeholder:text-muted focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="Tell us about your interest..." rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary font-bold py-md rounded-lg hover:scale-[1.01] shadow-lg shadow-primary/20 transition-all" type="submit">
+                Submit Inquiry
+            </button>
+</form>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-inverse-surface w-full py-12 border-t border-outline-variant mt-section opacity-90 hover:opacity-100 transition-all duration-300">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto px-gutter gap-lg">
+<div class="flex flex-col items-center md:items-start">
+<div class="font-headline-sm text-headline-sm font-semibold text-on-surface mb-sm">Cat AI</div>
+<p class="font-body-sm text-body-sm text-secondary">© 2024 Cat AI Phygital Ecosystem. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-xl">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Investor Relations</a>
+</div>
+</div>
+</footer>
+<script>
+    // Micro-interactions for cards
+    document.querySelectorAll('.soft-shadow').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-6px)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+        });
+    });
+</script>
+</body></html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cat AI | អនាគតនៃ Phygital Play — ភ្នំពេញ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700;800&family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #000000;
+  --bg-card: #ffffff;
+  --bg-card-alt: #f8fafc;
+  --primary: #d97706;
+  --primary-hover: #b45309;
+  --primary-dim: rgba(217,119,6,0.08);
+  --text: #111827;
+  --text-muted: #6b7280;
+  --text-on-dark: #f3f4f6;
+  --text-on-dark-muted: #9ca3af;
+  --highlight-blue: #bfdbfe;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 10px 25px -5px rgba(0,0,0,0.4), 0 4px 10px -4px rgba(0,0,0,0.2);
+  --shadow-hover: 0 20px 40px -8px rgba(0,0,0,0.5);
+  --nav-bg: rgba(0,0,0,0.85);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Kantumruy Pro','Inter',sans-serif;background:var(--bg);color:var(--text-on-dark);line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:'Playfair Display','Kantumruy Pro',serif;font-weight:700;line-height:1.3;}
+h1{font-size:clamp(30px,4.5vw,56px);letter-spacing:-0.3px;}
+h2{font-size:clamp(24px,3vw,36px);letter-spacing:-0.2px;}
+h3{font-size:clamp(17px,1.3vw,22px);}
+h2 span,h1 span{color:var(--primary);}
+.khmer{font-family:'Kantumruy Pro',sans-serif;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto;padding:0 24px;}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:700;font-size:20px;color:var(--text-on-dark);text-decoration:none;}
+.nav-logo span{color:var(--primary);}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{color:var(--text-on-dark-muted);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--primary);}
+.nav-cta{background:var(--primary);color:#000!important;padding:8px 22px;border-radius:8px;font-weight:700!important;font-size:13px!important;}
+.nav-cta:hover{background:var(--primary-hover)!important;}
+@media(max-width:768px){.nav-links a:not(.nav-cta){display:none;}}
+
+/* Hero */
+.hero{min-height:90vh;display:flex;align-items:center;padding:120px 0 80px;position:relative;overflow:hidden;text-align:center;}
+.hero-glow{position:absolute;top:10%;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(217,119,6,0.06) 0%,transparent 70%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;background:var(--primary-dim);border:1px solid rgba(217,119,6,0.15);border-radius:50px;font-size:11px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:24px;}
+.hero p{font-size:clamp(14px,1.2vw,17px);color:var(--text-on-dark-muted);max-width:640px;margin:20px auto 32px;line-height:1.8;}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--primary);color:#000;border-radius:var(--radius-sm);font-weight:700;font-size:14px;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 14px rgba(217,119,6,0.25);}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(217,119,6,0.35);}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:transparent;color:var(--text-on-dark);border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius-sm);font-weight:600;font-size:14px;text-decoration:none;transition:all 0.2s;cursor:pointer;font-family:inherit;}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary);}
+.hero-metrics{display:flex;justify-content:center;gap:48px;margin-top:48px;flex-wrap:wrap;}
+.hero-metrics .metric{text-align:center;}
+.hero-metrics .num{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--primary);}
+.hero-metrics .label{font-size:12px;color:var(--text-on-dark-muted);margin-top:4px;}
+
+/* Sections */
+section{padding:100px 0;}
+.section-header{text-align:center;margin-bottom:56px;}
+.section-header p{color:var(--text-on-dark-muted);font-size:15px;max-width:650px;margin:10px auto 0;}
+.section-tag{display:inline-block;padding:5px 14px;background:var(--primary-dim);border:1px solid rgba(217,119,6,0.15);border-radius:50px;font-size:11px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px;}
+@media(max-width:768px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+
+.card{background:var(--bg-card);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);color:var(--text);transition:all 0.3s;}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);}
+.card h3{color:var(--text);margin-bottom:8px;font-family:'Kantumruy Pro',sans-serif;font-weight:600;}
+.card p{color:var(--text-muted);font-size:14px;line-height:1.8;}
+.card .stat{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--primary);line-height:1.1;}
+.card .stat-label{font-size:12px;color:var(--text-muted);margin:4px 0 8px;text-transform:uppercase;letter-spacing:0.5px;}
+.card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:24px;}
+
+.quote-block{background:var(--bg-card);border-left:4px solid var(--primary);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:20px 24px;box-shadow:var(--shadow);color:var(--text);margin:16px 0;}
+.quote-block p{font-style:italic;font-size:14px;line-height:1.8;color:var(--text-muted);}
+.quote-block .attribution{margin-top:8px;font-style:normal;font-size:12px;color:var(--primary);font-weight:600;}
+
+.highlight-box{background:var(--bg-card);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);color:var(--text);margin:24px 0;}
+.highlight-box h3{color:var(--primary);margin-bottom:10px;}
+.highlight-box p{color:var(--text-muted);font-size:14px;line-height:1.8;}
+
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;background:var(--bg-card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+th{background:#f3f4f6;padding:12px 14px;text-align:left;font-weight:600;color:var(--text-muted);font-size:11px;text-transform:uppercase;}
+td{padding:12px 14px;border-bottom:1px solid #f3f4f6;color:var(--text);}
+tr:last-child td{border-bottom:none;}
+
+.sim-result{background:var(--bg-card);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);color:var(--text);margin:16px 0;}
+.sim-result h4{font-family:'Kantumruy Pro',sans-serif;font-size:16px;font-weight:600;color:var(--primary);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.sim-result h4 .check{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#22c55e;border-radius:5px;color:#fff;font-size:13px;font-weight:700;flex-shrink:0;}
+.sim-result p{font-size:14px;color:var(--text-muted);line-height:1.8;}
+.sim-result .highlight-text{background:var(--highlight-blue);color:#111827;padding:1px 3px;border-radius:2px;}
+.sim-result .ghost-text{color:#d1d5db;}
+
+.round{background:var(--bg-card);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);color:var(--text);position:relative;}
+.round .phase{position:absolute;top:-10px;left:20px;background:var(--primary);color:#000;padding:3px 16px;border-radius:12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;}
+.round .phase.upcoming{background:#8b5cf6;color:#fff;}
+.round .phase.future{background:#6b7280;color:#fff;}
+.round .amount{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--primary);margin:14px 0 2px;}
+.round .equity{font-size:13px;color:var(--text-muted);margin-bottom:14px;}
+.round ul{list-style:none;padding:0;}
+.round ul li{padding:5px 0;font-size:13px;color:var(--text-muted);padding-left:16px;position:relative;}
+.round ul li::before{content:'→';position:absolute;left:0;color:var(--primary);font-weight:600;}
+
+.doc-list{display:flex;flex-direction:column;gap:12px;}
+.doc-item{display:flex;align-items:center;justify-content:space-between;background:var(--bg-card);border-radius:var(--radius-sm);padding:18px 22px;box-shadow:var(--shadow);color:var(--text);transition:all 0.2s;}
+.doc-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);}
+.doc-item .info{flex:1;}
+.doc-item .title{font-weight:600;font-size:14px;}
+.doc-item .desc{font-size:12px;color:var(--text-muted);margin-top:2px;}
+.doc-btn{padding:8px 20px;background:var(--primary-dim);border:1px solid rgba(217,119,6,0.2);border-radius:8px;color:var(--primary);font-weight:600;font-size:12px;text-decoration:none;transition:all 0.15s;white-space:nowrap;}
+.doc-btn:hover{background:var(--primary);color:#000;}
+
+.contact-form{background:var(--bg-card);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow);max-width:600px;margin:0 auto;color:var(--text);}
+.form-group{margin-bottom:18px;}
+.form-group label{display:block;font-size:12px;color:var(--text-muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid #e5e7eb;background:#f9fafb;color:var(--text);font-size:14px;font-family:'Kantumruy Pro',sans-serif;transition:border-color 0.2s;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-dim);}
+.form-group textarea{height:110px;resize:vertical;}
+
+footer{padding:48px 0;border-top:1px solid rgba(255,255,255,0.06);text-align:center;color:var(--text-on-dark-muted);font-size:13px;}
+@media(max-width:768px){
+  .hero-metrics{gap:24px;}
+  section{padding:60px 0;}
+  .card,.round{padding:20px;}
+}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:rgba(217,119,6,0.2);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Cat <span>AI</span></a>
+    <div class="nav-links">
+      <a href="#problem">បញ្ហា</a>
+      <a href="#solution">ដំណោះស្រាយ</a>
+      <a href="#simulation">ការសាកល្បង</a>
+      <a href="#financials">ហិរញ្ញវត្ថុ</a>
+      <a href="#roadmap">ផែនទី</a>
+      <a href="#investment">វិនិយោគ</a>
+      <a href="#docs">ឯកសារ</a>
+      <a href="index.html" style="padding:4px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;font-size:12px;display:flex;align-items:center;gap:4px;">🇬🇧 EN</a>
+      <a href="#contact" class="nav-cta">ទំនាក់ទំនង</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="hero-badge">Pre-Seed · រៃអង្គាស $80,000</div>
+    <h1>អនាគតនៃ <span>Phygital Play</span><br>នៅកម្ពុជា</h1>
+    <p>ភ្ជាប់វត្ថុពិតជាមួយបញ្ញាសិប្បនិម្មិតនៅកណ្តាលទីក្រុងភ្នំពេញ។ ប្រព័ន្ធអេកូឡូស៊ីដែលត្រូវបានផ្ទៀងផ្ទាត់ដោយការក្លែងធ្វើទីផ្សារ 50 អ្នកប្រើប្រាស់។ ត្រៀមខ្លួនជាស្រេចសម្រាប់ការវិនិយោគដំណាក់កាលដំបូង។</p>
+    <div class="hero-actions">
+      <a href="#docs" class="btn-primary">មើលឯកសារវិនិយោគ</a>
+      <a href="#simulation" class="btn-outline">មើលលទ្ធផល Mirofish</a>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric"><div class="num">$1M+</div><div class="label">ចំណូលឆ្នាំទី 1</div></div>
+      <div class="metric"><div class="num">66%</div><div class="label">ប្រាក់ចំណេញសរុប</div></div>
+      <div class="metric"><div class="num">10.7M</div><div class="label">អ្នកប្រើ TikTok កម្ពុជា</div></div>
+      <div class="metric"><div class="num">26.2</div><div class="label">អាយុកណ្តាលទីផ្សារ</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem" style="background:rgba(217,119,6,0.015);padding-bottom:0;">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">ឱកាស</div>
+      <h2>គម្លាតចំនួន ៤ <span>ផលិតផលតែមួយ</span></h2>
+      <p>យុវជនកម្ពុជាដែលប្រើប្រាស់បច្ចេកវិទ្យាខ្ពស់ គ្មានកម្មវិធីផែនទីសង្គម គ្មានម៉ាកប្រអប់ពិការភ្នែកក្នុងស្រុក និងគ្មានប្រព័ន្ធអេកូឡូស៊ី phygital ។</p>
+    </div>
+    <div class="grid-4">
+      <div class="card">
+        <div class="card-icon" style="background:#fef2f2;">❌</div>
+        <h3>គ្មាន Social Map App</h3>
+        <p>Zenly បិទនៅឆ្នាំ ២០២៣។ Whoo មានបញ្ហាច្រើន។ <strong>គ្មានដៃគូប្រកួតប្រជែង</strong> បម្រើកម្ពុជា។</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:#fef2f2;">❌</div>
+        <h3>គ្មាន Blind Box ក្នុងស្រុក</h3>
+        <p>Pop Mart <strong>គ្មានហាង</strong> នៅកម្ពុជា។ អ្នកគាំទ្រ Labubu បង់ $30+ សម្រាប់ទំនិញនាំចូល។</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:#fef2f2;">❌</div>
+        <h3>ការសម្របសម្រួលពិបាក</h3>
+        <p>អ្នកប្រើពឹងផ្អែកលើ Telegram live location (15-30 នាទី) តែវាមិនសូវងាយស្រួល។</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:#fef2f2;">❌</div>
+        <h3>ធុញនឹងការជាវ</h3>
+        <p>អ្នកប្រើកម្ពុជាមិនចូលចិត្តការបង់ប្រាក់ប្រចាំខែ។ <strong>គំរូ $19 ដំបូង</strong> ដោះស្រាយបញ្ហានេះ។</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">ផលិតផល</div>
+      <h2>តើ <span>Cat AI</span> ជាអ្វី?</h2>
+      <p>ប្រព័ន្ធអេកូឡូស៊ីបីផ្នែក រួមបញ្ចូលគ្នារវាងផ្នែករឹង កម្មវិធី និងសហគមន៍។</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon" style="background:rgba(217,119,6,0.1);">🗺️</div>
+        <h3>ផែនទីសង្គម + សត្វចិញ្ចឹមនិម្មិត</h3>
+        <p>ឆ្មារបស់អ្នករស់នៅលើផែនទីភ្នំពេញ។ មិត្តភក្តិអាចមើលឃើញឆ្មាគ្នាទៅវិញទៅមក។ ចូលតំបន់ geofence → ឆ្មាប្រតិកម្ម + រកពិន្ទុ។ <strong>តាមដាន GPS</strong> ជាមួយចំណុច POI 3,000+ ។</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(217,119,6,0.1);">🎁</div>
+        <h3>ប្រអប់ពិការភ្នែក Phygital</h3>
+        <p>កូនសោរ $19 ជាមួយ BLE tracker + QR code។ ស្កេន QR ដើម្បីដោះសោរស្បែកឆ្មាឌីជីថលកម្រ។ មេកានិក Gacha (Legendary 1%) ជំរុញការទិញម្តងទៀត។ <strong>ប្រាក់ចំណេញ 78.9%</strong> ក្នុងមួយឯកតា។</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(217,119,6,0.1);">🔒</div>
+        <h3>ឯកជនភាពជាអាទិភាព</h3>
+        <p>Ghost Mode, Freeze Mode, កែតម្រូវភាពត្រឹមត្រូវ, កម្មវិធីកំណត់ពេលបិទស្វ័យប្រវត្តិ។ ការស្រាវជ្រាវអ្នកប្រើបញ្ជាក់ថា: <strong>ការគ្រប់គ្រង = ការជឿទុកចិត្ត</strong>។</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MIROFISH -->
+<section id="simulation" style="background:rgba(217,119,6,0.015);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">ការក្លែងធ្វើ MiroFish</div>
+      <h2>អ្នកប្រើ ៥០ នាក់, ៧២ ជុំ, <span>ការសន្និដ្ឋានតែមួយ</span></h2>
+      <p>ការក្លែងធ្វើទីផ្សារពហុភ្នាក់ងារនៃទម្រង់អ្នកប្រើ 50 ផ្សេងគ្នានៅភ្នំពេញ លើសពី 72 ជុំ។ លទ្ធផលបញ្ជាក់ពីចេតនាទិញខ្ពស់ និងកំណត់យុទ្ធសាស្រ្តការជាវដែលមានប្រសិទ្ធភាព។</p>
+    </div>
+
+    <div class="highlight-box">
+      <h3>បញ្ជាក់ពីចេតនាទិញខ្ពស់</h3>
+      <p>ការក្លែងធ្វើបានបញ្ជាក់ថាកូនសោរ $19 មាន <strong>ចេតនាទិញដំបូងខ្ពស់ខ្លាំង</strong> — ជាពិសេសក្នុងចំណោមអ្នកចូលចិត្តបច្ចេកវិទ្យា (90%) និងអ្នកជំនាញវ័យក្មេង (75%)។ មេកានិក Gacha និង geofencing ក្នុងស្រុកជាកត្តាជំរុញកំពូល។ បញ្ហាប្រឈមសំខាន់ (ការតស៊ូការជាវឆ្នាំទី 2) ត្រូវបានដោះស្រាយជាមួយការផ្តល់រង្វាន់ពីពាណិជ្ជករ។</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="stat">78.9%</div>
+        <div class="stat-label">ប្រាក់ចំណេញក្នុងមួយប្រអប់</div>
+        <p>ថ្លៃផលិត $4.00 → តម្លៃលក់ $19 ។ ប្រាក់ចំណេញខ្ពស់បំផុតមួយក្នុងឧស្សាហកម្មផ្នែករឹង។</p>
+      </div>
+      <div class="card">
+        <div class="stat">$0.12</div>
+        <div class="stat-label">ថ្លៃម៉ាស៊ីនមេក្នុងមួយអ្នកប្រើក្នុងមួយឆ្នាំ</div>
+        <p>ការជាវ $4.99/ឆ្នាំ គឺជាប្រាក់ចំណេញសុទ្ធ ~97.6%។ ថ្លៃម៉ាស៊ីនមេមានតិចតួចនៅពេលពង្រីក។</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Inter',sans-serif;font-size:18px;font-weight:600;margin-top:40px;margin-bottom:16px;">សម្រង់សំខាន់ៗពីការក្លែងធ្វើ</h3>
+    <div class="grid-2">
+      <div class="quote-block">
+        <p>"ពេលខ្ញុំឃើញកូនសោរឆ្មានេះជាលើកដំបូង ចំណាប់អារម្មណ៍របស់ខ្ញុំគឺ 'ពិតជាល្អ!' ក្នុងនាមជាអ្នកអភិវឌ្ឍន៍ និងអ្នកចូលចិត្តបច្ចេកវិទ្យា ខ្ញុំពិតជាចាប់អារម្មណ៍នឹងគំនិតនេះ។ $19 គឺជាតម្លៃសមរម្យ។"</p>
+        <div class="attribution">— អ្នកអភិវឌ្ឍន៍កម្មវិធី (ជុំទី 12)</div>
+      </div>
+      <div class="quote-block">
+        <p>"ការរក្សាទិន្នន័យកូអរដោនេ និងមូលដ្ឋានទិន្នន័យធ្វើសមកាលកម្មគឺចំណាយលុយ។ $0.12/អ្នកប្រើ/ឆ្នាំ គឺតិចតួចណាស់។ $4.99/ឆ្នាំ គឺសមរម្យ — តិចជាងកាហ្វេពីរពែង។"</p>
+        <div class="attribution">— អ្នកចូលចិត្តបច្ចេកវិទ្យា (ជុំទី 18)</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Inter',sans-serif;font-size:18px;font-weight:600;margin-top:40px;margin-bottom:16px;">លទ្ធផលតាមផ្នែក</h3>
+    <table>
+      <tr><th>ផ្នែក</th><th>ចេតនា</th><th>តម្លៃ $19</th><th>$4.99/ឆ្នាំ</th><th>កត្តាជំរុញ</th></tr>
+      <tr><td><strong>អ្នកចូលចិត្តបច្ចេកវិទ្យា</strong></td><td>90%</td><td>✅ ព្រម</td><td>✅ ព្រម</td><td>IoT + តម្លៃប្រមូល</td></tr>
+      <tr><td><strong>អ្នកជំនាញវ័យក្មេង</strong></td><td>75%</td><td>✅ ព្រម</td><td>🟡 មានលក្ខខណ្ឌ</td><td>Geofencing, ភស្តុតាងសង្គម</td></tr>
+      <tr><td><strong>និស្សិតសាកលវិទ្យាល័យ</strong></td><td>60%</td><td>🟡 ប្រយ័ត្នតម្លៃ</td><td>❌ មិនព្រម</td><td>ការរចនាគួរឱ្យស្រលាញ់</td></tr>
+      <tr><td><strong>ហាងកាហ្វេ/ដៃគូ</strong></td><td>100%</td><td>✅ ជាដៃគូ</td><td>✅ ជាការផ្សព្វផ្សាយ</td><td>ទាក់ទាញអតិថិជន</td></tr>
+    </table>
+
+    <h3 style="font-family:'Inter',sans-serif;font-size:18px;font-weight:600;margin-top:40px;margin-bottom:8px;">អន្ទាក់ការជាវ — ដោះស្រាយរួច</h3>
+    <p style="color:var(--text-on-dark-muted);font-size:14px;margin-bottom:16px;">ការក្លែងធ្វើបានកំណត់ថាការជាវឆ្នាំទី 2 ប្រឈមមុខនឹងការតស៊ូពីនិស្សិត។ ដំណោះស្រាយពីរត្រូវបានផ្ទៀងផ្ទាត់៖</p>
+    <div class="grid-2">
+      <div class="sim-result">
+        <h4><span class="check">✓</span> កញ្ចប់កាហ្វេឥតគិតថ្លៃ</h4>
+        <p>បង់ $4.99 ការជាវឆ្នាំទី 2 → ទទួលបាន <span class="highlight-text">កាហ្វេមធ្យមឥតគិតថ្លៃនៅ Brown Coffee</span> <span class="ghost-text">(តម្លៃ ~$3.50)។ ការជាវលែងជា 'ពន្ធម៉ាស៊ីនមេ' ទៀតហើយ។</span></p>
+      </div>
+      <div class="sim-result">
+        <h4><span class="check">✓</span> ប្រតិទិនមាតិកាតាមរដូវ</h4>
+        <p><span class="highlight-text">ចលនាប្រណាំងទូកបុណ្យអុំទូក,</span> <span class="ghost-text">សម្លៀកបំពាក់ខ្មែរបុរាណសម្រាប់ឆ្នាំថ្មី។ អ្នកប្រើធុញនឹងមាតិកានៅខែទី 3 — ឥឡូវយើងមានផែនការមាតិការួចហើយ។</span></p>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:24px;">
+      <p style="font-size:13px;margin:0;">"ការក្លែងធ្វើបានបង្ហាញពីគំរូ 'ប្រាក់ចំណេញខ្ពស់ ការរក្សាអ្នកប្រើទាប'។ ប្រាក់ចំណេញដំបូង 78.9% និងសេដ្ឋកិច្ចម៉ាស៊ីនមេអំណោយផល $0.12/អ្នកប្រើ/ឆ្នាំ តែភាពថ្មីថ្មោងថយចុះនៅខែទី 3 ដោយគ្មានមាតិកាថ្មី។ ផែនការសកម្មភាពដែលបានណែនាំដោះស្រាយហានិភ័យទាំងអស់។" — <strong>របាយការណ៍ Mirofish</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">ការវិភាគទីផ្សារ</div>
+      <h2>កម្ពុជា <span>ត្រៀមខ្លួនរួចរាល់</span></h2>
+    </div>
+    <div class="grid-3">
+      <div class="card"><div class="stat">17.7M</div><div class="stat-label">ចំនួនប្រជាជន</div><p>អាយុកណ្តាល <strong>26.2</strong> — ក្មេងជាងគេមួយក្នុងអាស៊ីអាគ្នេយ៍។</p></div>
+      <div class="card"><div class="stat">143%</div><div class="stat-label">ការប្រើប្រាស់ស្មាតហ្វូន</div><p>25.3M ការតភ្ជាប់ក្នុងចំនួនប្រជាជន 17.7M។ សេដ្ឋកិច្ចផ្តោតលើទូរស័ព្ទ។</p></div>
+      <div class="card"><div class="stat">10.7M</div><div class="stat-label">អ្នកប្រើ TikTok (18+)</div><p><strong>92.9% នៃមនុស្សពេញវ័យ</strong> — ឆានែលល្អឥតខ្ចោះសម្រាប់មាតិកាប្រអប់ពិការភ្នែក។</p></div>
+    </div>
+    <table style="margin-top:24px;">
+      <tr><th>សូចនាករ</th><th>តម្លៃ</th><th>ប្រភព</th></tr>
+      <tr><td>ចំនួនប្រជាជន</td><td>17.7M</td><td>DataReportal 2025</td></tr>
+      <tr><td>អាយុកណ្តាល</td><td>26.2 ឆ្នាំ</td><td>DataReportal 2025</td></tr>
+      <tr><td>ការតភ្ជាប់ស្មាតហ្វូន</td><td>25.3M (143%)</td><td>DataReportal 2025</td></tr>
+      <tr><td>អ្នកប្រើបណ្តាញសង្គម</td><td>12.9M (72.4%)</td><td>DataReportal 2025</td></tr>
+      <tr><td>ទីផ្សារ eCommerce</td><td>$1.51B (2024)</td><td>U.S. ITA</td></tr>
+      <tr><td><strong>គូប្រកួតប្រជែងផ្ទាល់</strong></td><td><strong>0</strong></td><td>ការស្រាវជ្រាវទីផ្សារ</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- FINANCIALS -->
+<section id="financials" style="background:rgba(217,119,6,0.015);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">ការព្យាករណ៍ហិរញ្ញវត្ថុ</div>
+      <h2>ផ្លូវទៅកាន់ <span>$1M</span> ក្នុងឆ្នាំដំបូង</h2>
+      <p>$80,000 ផ្តល់ហិរញ្ញប្បទានដល់អាជីវកម្មចំណូល $1M+ ឆ្នាំទី 1។ ចំណេញនៅខែទី 3។ ប្រាក់ចំណេញសុទ្ធ 53.8%។</p>
+    </div>
+    <div class="grid-4">
+      <div class="card"><div class="stat">$1,097,421</div><div class="stat-label">ចំណូលឆ្នាំទី 1</div></div>
+      <div class="card"><div class="stat">$589,826</div><div class="stat-label">ប្រាក់ចំណេញសុទ្ធ</div></div>
+      <div class="card"><div class="stat">53.8%</div><div class="stat-label">ប្រាក់ចំណេញសុទ្ធ</div></div>
+      <div class="card"><div class="stat">ខែទី 3</div><div class="stat-label">ចំណេញដើមទុន</div></div>
+    </div>
+    <h3 style="font-family:'Inter',sans-serif;font-size:16px;font-weight:600;margin-top:24px;margin-bottom:8px;">ការបំបែកចំណូល</h3>
+    <table>
+      <tr><th>ប្រភព</th><th>តម្លៃ</th><th>បរិមាណ</th><th>ចំណូល</th></tr>
+      <tr><td>ប្រអប់ពិការភ្នែក</td><td>$19.00</td><td>52,632 ឯកតា</td><td>$1,000,008</td></tr>
+      <tr><td>ការជាវបុព្វលាភ</td><td>$1.99/ខែ</td><td>~4,925 អ្នកប្រើ</td><td>$97,413</td></tr>
+      <tr style="font-weight:700;"><td><strong>សរុប</strong></td><td></td><td>21,000 អតិថិជន</td><td><strong>$1,097,421</strong></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">ផែនទីបង្ហាញផលិតផល</div>
+      <h2>ដំណាក់កាល <span>អភិវឌ្ឍន៍</span></h2>
+    </div>
+    <div class="grid-3">
+      <div class="card" style="border-top:4px solid var(--primary);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--primary);margin-bottom:6px;">ដំណាក់កាលទី 1 · ឥឡូវ</div>
+        <h3>Social Map MVP</h3>
+        <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">ខែទី 1-3</p>
+        <ul style="list-style:none;font-size:13px;color:var(--text-muted);">
+          <li style="padding:3px 0;">✅ ផែនទីភ្នំពេញពណ៌ងងឹត</li>
+          <li style="padding:3px 0;">✅ តាមដាន GPS (POI 3,000+)</li>
+          <li style="padding:3px 0;">✅ 7 តំបន់ Geofence</li>
+          <li style="padding:3px 0;">🔄 កម្មវិធី React Native</li>
+          <li style="padding:3px 0;">🔲 ចូល, មិត្តភក្តិ, WebSocket</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:4px solid #8b5cf6;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#8b5cf6;margin-bottom:6px;">ដំណាក់កាលទី 2 · Seed</div>
+        <h3>ផ្នែករឹង + ប្រាក់</h3>
+        <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">ខែទី 3-6</p>
+        <ul style="list-style:none;font-size:13px;color:var(--text-muted);">
+          <li style="padding:3px 0;">🔲 កូនសោរ BLE (10 ការរចនា)</li>
+          <li style="padding:3px 0;">🔲 QR code + ស្បែកឆ្មា</li>
+          <li style="padding:3px 0;">🔲 ការជាវ $1.99/ខែ</li>
+          <li style="padding:3px 0;">🔲 ប្រព័ន្ធផ្លាស់ប្តូរ</li>
+          <li style="padding:3px 0;">🔲 វិបផតថលដៃគូ</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:4px solid #6b7280;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#6b7280;margin-bottom:6px;">ដំណាក់កាលទី 3 · Series A</div>
+        <h3>ពង្រីក + តំបន់</h3>
+        <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">ខែទី 6-12</p>
+        <ul style="list-style:none;font-size:13px;color:var(--text-muted);">
+          <li style="padding:3px 0;">🔲 AI ជជែក (DeepSeek)</li>
+          <li style="padding:3px 0;">🔲 ខេត្តសៀមរាប/បាត់ដំបង</li>
+          <li style="padding:3px 0;">🔲 សាកល្បងប្រទេសថៃ</li>
+          <li style="padding:3px 0;">🔲 ព្រឹត្តិការណ៍តាមរដូវ</li>
+          <li style="padding:3px 0;">🔲 រៃអង្គាស Series A</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT -->
+<section id="investment" style="background:rgba(217,119,6,0.015);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">ជុំវិនិយោគ</div>
+      <h2>ផ្តល់មូលនិធិដល់ <span>អនាគត</span></h2>
+    </div>
+    <div class="grid-3">
+      <div class="round">
+        <div class="phase">ឥឡូវ · ត្រីមាសទី 3 2026</div>
+        <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;margin-top:8px;">Seed Round</div>
+        <div class="amount">$80,000</div>
+        <div class="equity">12-15% ភាគហ៊ុន · $500K Pre</div>
+        <ul>
+          <li>បើកដំណើរការកម្មវិធី</li>
+          <li>3,000 កូនសោរ BLE</li>
+          <li>សកម្មភាពនៅសាកលវិទ្យាល័យភូមិន្ទ</li>
+          <li>យុទ្ធនាការ TikTok</li>
+          <li>ថវិការត់ 12 ខែ</li>
+        </ul>
+      </div>
+      <div class="round">
+        <div class="phase upcoming">ត្រីមាសទី 2 2027</div>
+        <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;margin-top:8px;">Series A</div>
+        <div class="amount">$750,000</div>
+        <div class="equity">15-20% · $3-5M Pre</div>
+        <ul>
+          <li>ពង្រីកថៃ/វៀតណាម</li>
+          <li>50,000 កូនសោរ</li>
+          <li>លក្ខណៈពិសេស AI</li>
+          <li>ក្រុមការងារ 6 នាក់</li>
+          <li>តម្រូវ: $1M+ ARR</li>
+        </ul>
+      </div>
+      <div class="round">
+        <div class="phase future">ត្រីមាសទី 2 2028</div>
+        <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;margin-top:8px;">Series B</div>
+        <div class="amount">$5,000,000</div>
+        <div class="equity">Growth · $20-30M Pre</div>
+        <ul>
+          <li>ពង្រីកអាស៊ីអាគ្នេយ៍</li>
+          <li>BLE v2 ផ្នែករឹង</li>
+          <li>ក្រុម 50 នាក់</li>
+          <li>គំរូ AI ផ្ទាល់ខ្លួន</li>
+          <li>តម្រូវ: $5M+ ARR</li>
+        </ul>
+      </div>
+    </div>
+    <table style="margin-top:28px;">
+      <tr><th>ប្រភេទ</th><th>ចំនួន</th><th>%</th></tr>
+      <tr><td>ផ្សិតចាក់ (10 ការរចនា)</td><td>$35,000</td><td>43.8%</td></tr>
+      <tr><td>ផលិតកម្មសាកល្បង (3,000)</td><td>$18,630</td><td>23.3%</td></tr>
+      <tr><td>ទីផ្សារបើកដំណើរការ (90 ថ្ងៃ)</td><td>$8,500</td><td>10.6%</td></tr>
+      <tr><td>ការរចនា PCB + វិញ្ញាបនប័ត្រ BLE</td><td>$5,000</td><td>6.2%</td></tr>
+      <tr><td>ការអភិវឌ្ឍន៍កម្មវិធី</td><td>$5,124</td><td>6.4%</td></tr>
+      <tr><td>ការវេចខ្ចប់ + បោះពុម្ព</td><td>$2,500</td><td>3.1%</td></tr>
+      <tr><td>ច្បាប់ + គណនេយ្យ</td><td>$2,000</td><td>2.5%</td></tr>
+      <tr><td>ទុនបម្រុង</td><td>$2,746</td><td>3.4%</td></tr>
+      <tr><td>ម៉ាស៊ីនមេ + ហេដ្ឋារចនាសម្ព័ន្ធ</td><td>$500</td><td>0.6%</td></tr>
+      <tr style="font-weight:700;color:var(--primary);"><td><strong>សរុប</strong></td><td><strong>$80,000</strong></td><td><strong>100%</strong></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- DOCS -->
+<section id="docs">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">ឯកសារ</div>
+      <h2>ទាញយក <span>ឯកសារ</span></h2>
+      <p>មើលក្នុងកម្មវិធីរុករក ឬ File → Print → Save as PDF។</p>
+    </div>
+    <div class="doc-list">
+      <div class="doc-item">
+        <div class="info">
+          <div class="title">📑 អនុស្សរណៈវិនិយោគពេញលេញ</div>
+          <div class="desc">ផែនការអាជីវកម្ម · ការវិភាគទីផ្សារ · SWOT · ការព្យាករណ៍ហិរញ្ញវត្ថុ</div>
+        </div>
+        <a class="doc-btn" href="investment-memorandum.html" target="_blank">មើល →</a>
+      </div>
+      <div class="doc-item">
+        <div class="info">
+          <div class="title">📊 របាយការណ៍ស្រាវជ្រាវអ្នកប្រើ</div>
+          <div class="desc">ការសម្ភាសន៍ Cookiy AI · ទម្រង់អ្នកប្រើ 3 នាក់ · ការកំណត់តម្លៃ</div>
+        </div>
+        <a class="doc-btn" href="user-research-report.html" target="_blank">មើល →</a>
+      </div>
+      <div class="doc-item">
+        <div class="info">
+          <div class="title">⚡ របាយការណ៍ MiroFish (English)</div>
+          <div class="desc">50 អ្នកប្រើ · 72 ជុំ · ការក្លែងធ្វើទីផ្សារ · ចេតនាទិញ · ការវិភាគការជាវ</div>
+        </div>
+        <a class="doc-btn" href="mirofish-simulation-report.html" target="_blank">មើល →</a>
+      </div>
+      <div class="doc-item">
+        <div class="info">
+          <div class="title">⚡ របាយការណ៍ MiroFish (中文)</div>
+          <div class="desc">ការវិភាគក្លែងធ្វើជាភាសាចិន ជាមួយការបំបែកតាមផ្នែក</div>
+        </div>
+        <a class="doc-btn" href="mirofish-simulation-report-zh.html" target="_blank">មើល →</a>
+      </div>
+      <div class="doc-item">
+        <div class="info">
+          <div class="title">🎨 DESIGN.md (Stitch)</div>
+          <div class="desc">Google Stitch design tokens · 13 ពណ៌ · 13 សមាសភាគ · WCAG</div>
+        </div>
+        <a class="doc-btn" href="DESIGN.md" target="_blank">មើល →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:rgba(217,119,6,0.015);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">ទំនាក់ទំនង</div>
+      <h2>ចាប់អារម្មណ៍ <span>វិនិយោគ?</span></h2>
+      <p>ស្នើសុំអនុស្សរណៈវិនិយោគពេញលេញ គំរូហិរញ្ញវត្ថុ ឬកំណត់ពេលហៅទូរស័ព្ទ។</p>
+    </div>
+    <div class="contact-form">
+      <form action="mailto:seavniv@gmail.com" method="GET" enctype="text/plain" onsubmit="return handleSubmit(event)">
+        <div class="form-group">
+          <label>ឈ្មោះពេញ</label>
+          <input type="text" name="name" placeholder="ឈ្មោះរបស់អ្នក" required>
+        </div>
+        <div class="form-group">
+          <label>អ៊ីមែល</label>
+          <input type="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>ខ្ញុំជា...</label>
+          <select name="type">
+            <option value="Angel / Venture Investor">វិនិយោគិនទេវតា / Venture</option>
+            <option value="Strategic Partner">ដៃគូយុទ្ធសាស្រ្ត</option>
+            <option value="Other">ផ្សេងទៀត</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>សារ</label>
+          <textarea name="message" placeholder="ប្រាប់ខ្ញុំអំពីខ្លួនអ្នក និងចំណាប់អារម្មណ៍របស់អ្នក..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:16px;">ផ្ញើសារ</button>
+      </form>
+      <div id="form-success" style="display:none;text-align:center;padding:30px;">
+        <div style="font-size:48px;margin-bottom:10px;">📨</div>
+        <div style="font-size:18px;font-weight:600;color:#10b981;">ផ្ញើរួចរាល់!</div>
+        <div style="font-size:14px;color:var(--text-muted);margin-top:4px;">ខ្ញុំនឹងឆ្លើយតបក្នុងរយៈពេល 24 ម៉ោង។</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:20px;">
+      <p style="color:var(--text-on-dark-muted);font-size:13px;">ឬទាក់ទងខ្ញុំផ្ទាល់៖</p>
+      <p style="font-size:16px;color:var(--primary);font-weight:600;">seavniv@gmail.com</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p style="font-family:'Playfair Display',serif;font-size:18px;">Cat <span style="color:var(--primary);">AI</span></p>
+    <p style="margin-top:4px;font-size:12px;">ភ្នំពេញ, កម្ពុជា · សម្ងាត់ · © 2026</p>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const f = e.target;
+  window.location.href = `mailto:seavniv@gmail.com?subject=${encodeURIComponent('Cat AI ការសាកសួរវិនិយោគ — ' + f.name.value)}&body=${encodeURIComponent('ឈ្មោះ: ' + f.name.value + '\nអ៊ីមែល: ' + f.email.value + '\nប្រភេទ: ' + f.type.value + '\n\nសារ:\n' + f.message.value)}`;
+  document.querySelector('.contact-form form').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+  return false;
+}
+</script>
+</body>
+</html>

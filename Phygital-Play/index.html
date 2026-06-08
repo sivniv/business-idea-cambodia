@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cat AI | The Future of Phygital Play — Phnom Penh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #000000;
+  --bg-card: #ffffff;
+  --bg-card-alt: #f8fafc;
+  --bg-soft: rgba(245,158,11,0.04);
+  --primary: #d97706;
+  --primary-hover: #b45309;
+  --primary-dim: rgba(217,119,6,0.08);
+  --text: #111827;
+  --text-muted: #6b7280;
+  --text-light: #9ca3af;
+  --text-on-dark: #f3f4f6;
+  --text-on-dark-muted: #9ca3af;
+  --border: #e5e7eb;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 10px 25px -5px rgba(0,0,0,0.4), 0 4px 10px -4px rgba(0,0,0,0.2);
+  --shadow-hover: 0 20px 40px -8px rgba(0,0,0,0.5);
+  --nav-bg: rgba(0,0,0,0.85);
+  --highlight-blue: #bfdbfe;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text-on-dark);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:'Playfair Display',serif;font-weight:700;line-height:1.2;}
+h1{font-size:clamp(34px,4.5vw,64px);letter-spacing:-0.5px;}
+h2{font-size:clamp(26px,3vw,40px);letter-spacing:-0.3px;}
+h3{font-size:clamp(18px,1.3vw,24px);}
+h2 span,h1 span{color:var(--primary);}
+.sans{font-family:'Inter',sans-serif;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.06);transition:all 0.3s;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto;padding:0 24px;}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:700;font-size:20px;color:var(--text-on-dark);text-decoration:none;}
+.nav-logo span{color:var(--primary);}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{color:var(--text-on-dark-muted);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;letter-spacing:0.2px;}
+.nav-links a:hover{color:var(--primary);}
+.nav-cta{background:var(--primary);color:#0B0C10!important;padding:8px 22px;border-radius:8px;font-weight:700!important;font-size:13px!important;transition:all 0.2s!important;}
+.nav-cta:hover{background:var(--primary-hover)!important;color:#0B0C10!important;}
+@media(max-width:768px){.nav-links a:not(.nav-cta){display:none;}}
+
+/* Hero */
+.hero{min-height:90vh;display:flex;align-items:center;padding:120px 0 80px;position:relative;overflow:hidden;text-align:center;}
+.hero-glow{position:absolute;top:10%;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(245,158,11,0.06) 0%,transparent 70%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;background:var(--primary-dim);border:1px solid rgba(245,158,11,0.15);border-radius:50px;font-size:11px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:24px;}
+.hero p{font-size:clamp(15px,1.2vw,17px);color:var(--text-on-dark-muted);max-width:640px;margin:20px auto 32px;line-height:1.7;}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--primary);color:#0B0C10;border-radius:var(--radius-sm);font-weight:700;font-size:14px;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;font-family:inherit;box-shadow:0 4px 14px rgba(245,158,11,0.25);}
+.btn-primary:hover{background:var(--primary-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,158,11,0.35);}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:transparent;color:var(--text-on-dark);border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius-sm);font-weight:600;font-size:14px;text-decoration:none;transition:all 0.2s;cursor:pointer;font-family:inherit;}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary);}
+.hero-metrics{display:flex;justify-content:center;gap:48px;margin-top:48px;flex-wrap:wrap;}
+.hero-metrics .metric{text-align:center;}
+.hero-metrics .num{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--primary);}
+.hero-metrics .label{font-size:12px;color:var(--text-on-dark-muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.8px;}
+
+/* Section spacing */
+section{padding:100px 0;}
+.section-header{text-align:center;margin-bottom:56px;}
+.section-header p{color:var(--text-on-dark-muted);font-size:15px;max-width:600px;margin:10px auto 0;}
+.section-tag{display:inline-block;padding:5px 14px;background:var(--primary-dim);border:1px solid rgba(245,158,11,0.15);border-radius:50px;font-size:11px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;}
+
+/* Cards — LIGHT on DARK (Stitch style) */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:20px;}
+@media(max-width:768px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+
+.card{background:var(--bg-card);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);color:var(--text);transition:all 0.3s;}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);}
+.card h3{color:var(--text);margin-bottom:8px;}
+.card p{color:var(--text-muted);font-size:14px;line-height:1.6;}
+.card .stat{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--primary);line-height:1.1;}
+.card .stat-label{font-size:12px;color:var(--text-muted);margin:4px 0 8px;text-transform:uppercase;letter-spacing:0.5px;}
+.card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:24px;}
+
+/* Quote block */
+.quote-block{background:var(--bg-card);border-left:4px solid var(--primary);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:20px 24px;box-shadow:var(--shadow);color:var(--text);margin:16px 0;}
+.quote-block p{font-style:italic;font-size:14px;line-height:1.7;color:var(--text-muted);}
+.quote-block .attribution{margin-top:8px;font-style:normal;font-size:12px;color:var(--primary);font-weight:600;}
+
+/* Highlight box */
+.highlight-box{background:var(--bg-card);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);color:var(--text);margin:24px 0;}
+.highlight-box h3{color:var(--primary);margin-bottom:10px;}
+.highlight-box p{color:var(--text-muted);font-size:14px;}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;background:var(--bg-card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+th{background:#f3f4f6;padding:12px 14px;text-align:left;font-weight:600;color:var(--text-muted);font-size:11px;text-transform:uppercase;letter-spacing:0.8px;}
+td{padding:12px 14px;border-bottom:1px solid #f3f4f6;color:var(--text);}
+tr:last-child td{border-bottom:none;}
+
+/* Sim result — Stitch card style */
+.sim-result{background:var(--bg-card);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);color:var(--text);margin:16px 0;}
+.sim-result h4{font-family:'Inter',sans-serif;font-size:16px;font-weight:600;color:var(--primary);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.sim-result h4 .check{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#22c55e;border-radius:5px;color:#fff;font-size:13px;font-weight:700;flex-shrink:0;}
+.sim-result p{font-size:14px;color:var(--text-muted);line-height:1.6;}
+.sim-result .highlight-text{background:var(--highlight-blue);color:#111827;padding:1px 3px;border-radius:2px;}
+.sim-result .ghost-text{color:#d1d5db;}
+
+/* Investor rounds */
+.round{background:var(--bg-card);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);color:var(--text);position:relative;}
+.round .phase{position:absolute;top:-10px;left:20px;background:var(--primary);color:#0B0C10;padding:3px 16px;border-radius:12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;}
+.round .phase.upcoming{background:#8b5cf6;color:#fff;}
+.round .phase.future{background:#6b7280;color:#fff;}
+.round .amount{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:var(--primary);margin:14px 0 2px;}
+.round .equity{font-size:13px;color:var(--text-muted);margin-bottom:14px;}
+.round ul{list-style:none;padding:0;}
+.round ul li{padding:5px 0;font-size:13px;color:var(--text-muted);padding-left:16px;position:relative;}
+.round ul li::before{content:'→';position:absolute;left:0;color:var(--primary);font-weight:600;}
+
+/* Docs */
+.doc-list{display:flex;flex-direction:column;gap:12px;}
+.doc-item{display:flex;align-items:center;justify-content:space-between;background:var(--bg-card);border-radius:var(--radius-sm);padding:18px 22px;box-shadow:var(--shadow);color:var(--text);transition:all 0.2s;}
+.doc-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);}
+.doc-item .info{flex:1;}
+.doc-item .title{font-weight:600;font-size:14px;}
+.doc-item .desc{font-size:12px;color:var(--text-muted);margin-top:2px;}
+.doc-btn{padding:8px 20px;background:var(--primary-dim);border:1px solid rgba(245,158,11,0.2);border-radius:8px;color:var(--primary);font-weight:600;font-size:12px;text-decoration:none;transition:all 0.15s;white-space:nowrap;}
+.doc-btn:hover{background:var(--primary);color:#0B0C10;}
+
+/* Contact */
+.contact-form{background:var(--bg-card);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow);max-width:600px;margin:0 auto;color:var(--text);}
+.form-group{margin-bottom:18px;}
+.form-group label{display:block;font-size:12px;color:var(--text-muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:#f9fafb;color:var(--text);font-size:14px;font-family:inherit;transition:border-color 0.2s;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-dim);}
+.form-group textarea{height:110px;resize:vertical;}
+
+/* Footer */
+footer{padding:48px 0;border-top:1px solid rgba(255,255,255,0.06);text-align:center;color:var(--text-on-dark-muted);font-size:13px;}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero-metrics{gap:24px;}
+  .hero-metrics .metric{flex:1;}
+  section{padding:60px 0;}
+  .card{padding:20px;}
+  .round{padding:22px;}
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:rgba(245,158,11,0.2);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:rgba(245,158,11,0.4);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Cat <span>AI</span></a>
+    <div class="nav-links">
+      <a href="#problem">Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#simulation">Validation</a>
+      <a href="#financials">Financials</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#investment">Invest</a>
+      <a href="#docs">Docs</a>
+      <a href="index-kh.html" style="padding:4px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:6px;font-size:12px;display:flex;align-items:center;gap:4px;">🇰🇭 ខ្មែរ</a>
+      <a href="#contact" class="nav-cta">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="hero-badge">Pre-Seed · Raising $80,000</div>
+    <h1>The Future of <span>Phygital Play</span></h1>
+    <p>Bridging physical collectibles with digital intelligence in the heart of Phnom Penh. A cohesive ecosystem validated by a 50-user market simulation. Ready for seed.</p>
+    <div class="hero-actions">
+      <a href="#docs" class="btn-primary">View Investment Memorandum</a>
+      <a href="#simulation" class="btn-outline">See Mirofish Validation</a>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric"><div class="num">$1M+</div><div class="label">Year 1 Revenue Target</div></div>
+      <div class="metric"><div class="num">66%</div><div class="label">Gross Margin</div></div>
+      <div class="metric"><div class="num">10.7M</div><div class="label">Cambodia TikTok Users</div></div>
+      <div class="metric"><div class="num">26.2</div><div class="label">Median Age — Perfect Target</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem" style="background:rgba(245,158,11,0.015);padding-bottom:0;">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">The Opportunity</div>
+      <h2>Four Gaps, <span>One Product</span></h2>
+      <p>Cambodia's young, hyper-connected generation has no social map app, no local blind box brand, and no phygital collectible ecosystem.</p>
+    </div>
+    <div class="grid-4">
+      <div class="card">
+        <div class="card-icon" style="background:#fef2f2;">❌</div>
+        <h3>No Social Map App</h3>
+        <p>Zenly shut down in 2023. Whoo is buggy and not localized. <strong>Zero competitors</strong> serving Cambodia.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:#fef2f2;">❌</div>
+        <h3>No Local Blind Box</h3>
+        <p>Pop Mart has <strong>zero stores</strong> in Cambodia. Labubu fans pay $30+ marked-up imports.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:#fef2f2;">❌</div>
+        <h3>Coordination Chaos</h3>
+        <p>Users rely on Telegram live location (15-30 min) but find it clunky. No dedicated meetup app.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:#fef2f2;">❌</div>
+        <h3>Subscription Fatigue</h3>
+        <p>Cambodians resist recurring payments. Our <strong>$19 physical-first model</strong> solves this.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">The Product</div>
+      <h2>What Is <span>Cat AI</span>?</h2>
+      <p>A triple-threat ecosystem combining hardware, software, and community.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon" style="background:rgba(245,158,11,0.1);">🗺️</div>
+        <h3>Social Map + Virtual Pet</h3>
+        <p>Your cat lives on a shared map of Phnom Penh. Friends see each other's cats. Enter a geofence → cat reacts + earns treats. <strong>GPS cat tracking</strong> across 3,000+ local POIs.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(245,158,11,0.1);">🎁</div>
+        <h3>Phygital Blind Box</h3>
+        <p>$19 keychain with BLE tracker + QR code. Unlocks rare digital cat skin. Gacha mechanics (1% Legendary) drive 2.5 boxes avg per collector. <strong>78.9% gross margin</strong> per unit.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon" style="background:rgba(245,158,11,0.1);">🔒</div>
+        <h3>Privacy-First Design</h3>
+        <p>Ghost Mode, Freeze Mode, adjustable accuracy, auto-stop timers. User research confirmed: <strong>control = trust</strong>. Built into product from day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MIROFISH -->
+<section id="simulation" style="background:rgba(245,158,11,0.015);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">MiroFish Simulation — Already Validated</div>
+      <h2>50 Users, 72 Rounds, <span>One Conclusion</span></h2>
+      <p>A multi-agent market simulation of 50 diverse Phnom Penh profiles over 72 interactive rounds. The results confirm high purchase intent and identify the exact subscription strategy that works.</p>
+    </div>
+
+    <div class="highlight-box">
+      <h3>High Purchase Intent Confirmed</h3>
+      <p>The 50-user simulation confirmed that the $19 blind box keychain has <strong>extremely high initial purchase intent</strong> — especially among tech enthusiasts (90%) and young professionals (75%). The gacha mechanics and local geofencing were the top drivers. The key challenge (Year 2 subscription resistance) has been solved with merchant reward bundling.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="stat">78.9%</div>
+        <div class="stat-label">Gross Margin per Box</div>
+        <p>$4.00 manufacturing cost → $19 retail. One of the highest margins in consumer hardware.</p>
+      </div>
+      <div class="card">
+        <div class="stat">$0.12</div>
+        <div class="stat-label">Server Cost Per User Per Year</div>
+        <p>A $4.99/year renewal is ~97.6% pure profit. Server costs are negligible at scale.</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Inter',sans-serif;font-size:18px;font-weight:600;margin-top:40px;margin-bottom:16px;">Key Quotes from the Simulation</h3>
+    <div class="grid-2">
+      <div class="quote-block">
+        <p>"When I first saw this cat-shaped keychain tracker, my first impression was 'Nice!' As a developer and tech enthusiast, I was deeply drawn to this physical-plus-digital concept. I would buy this immediately; $19 is a very reasonable price."</p>
+        <div class="attribution">— Simulated Software Developer (Round 12)</div>
+      </div>
+      <div class="quote-block">
+        <p>"Maintaining coordinates and sync databases costs money. Knowing that coordinate storage is only about $0.12/user/year, a $4.99/year fee is highly reasonable. In Phnom Penh, $4.99 is less than a couple of coffees."</p>
+        <div class="attribution">— Simulated Tech Enthusiast (Round 18)</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Inter',sans-serif;font-size:18px;font-weight:600;margin-top:40px;margin-bottom:16px;">Simulation Segment Results</h3>
+    <table>
+      <tr><th>Segment</th><th>Intent</th><th>$19 Price</th><th>$4.99/yr</th><th>Key Driver</th></tr>
+      <tr><td><strong>Tech Enthusiasts</strong></td><td>90%</td><td>✅ Willing</td><td>✅ Accepts</td><td>IoT + collectible value</td></tr>
+      <tr><td><strong>Young Professionals</strong></td><td>75%</td><td>✅ Willing</td><td>🟡 Conditional</td><td>Local geofencing, social proof</td></tr>
+      <tr><td><strong>University Students</strong></td><td>60%</td><td>🟡 Price-sensitive</td><td>❌ Resistant</td><td>Cute design, campus social</td></tr>
+      <tr><td><strong>Cafe / Retail Partners</strong></td><td>100%</td><td>✅ As partner</td><td>✅ As promotion</td><td>Foot traffic + brand engagement</td></tr>
+    </table>
+
+    <h3 style="font-family:'Inter',sans-serif;font-size:18px;font-weight:600;margin-top:40px;margin-bottom:8px;">The Subscription Trap — Solved</h3>
+    <p style="color:var(--text-on-dark-muted);font-size:14px;margin-bottom:16px;">The simulation identified that Year 2 subscription renewal faces student resistance. Two solutions were validated:</p>
+    <div class="grid-2">
+      <div class="sim-result">
+        <h4><span class="check">✓</span> Free Coffee Bundle</h4>
+        <p>Pay $4.99 Year 2 renewal → instantly receive a <span class="highlight-text">free medium coffee at Brown Coffee</span> <span class="ghost-text">(~$3.50 value). The subscription is no longer a "server tax."</span></p>
+      </div>
+      <div class="sim-result">
+        <h4><span class="check">✓</span> Seasonal Content Calendar</h4>
+        <p><span class="highlight-text">Water Festival boat racing animations,</span> <span class="ghost-text">Khmer New Year traditional cat outfits. Content fatigue set in by Month 3 — now we have a content pipeline.</span></p>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:24px;">
+      <p style="font-size:13px;color:var(--text-muted);margin:0;">"The simulation highlighted a classic 'High Margin, Low Retention' pattern. Excellent upfront cash margins (78.9%) and favorable server economics ($0.12/user/year), but novelty declines by Month 3 without fresh content. The recommended action plan addresses all identified risks." — <strong>Mirofish Simulation Report</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Market Analysis</div>
+      <h2>Cambodia Is <span>Ready</span></h2>
+    </div>
+    <div class="grid-3">
+      <div class="card"><div class="stat">17.7M</div><div class="stat-label">Population</div><p>Median age <strong>26.2</strong> — one of the youngest in SE Asia.</p></div>
+      <div class="card"><div class="stat">143%</div><div class="stat-label">Smartphone Penetration</div><p>25.3M connections in a 17.7M population. Mobile-first economy.</p></div>
+      <div class="card"><div class="stat">10.7M</div><div class="stat-label">TikTok Users (18+)</div><p><strong>92.9% of adults</strong> — perfect channel for viral blind box content.</p></div>
+    </div>
+    <table style="margin-top:24px;">
+      <tr><th>Metric</th><th>Value</th><th>Source</th></tr>
+      <tr><td>Population</td><td>17.7M</td><td>DataReportal 2025</td></tr>
+      <tr><td>Median Age</td><td>26.2 years</td><td>DataReportal 2025</td></tr>
+      <tr><td>Smartphone Connections</td><td>25.3M (143%)</td><td>DataReportal 2025</td></tr>
+      <tr><td>Social Media Users</td><td>12.9M (72.4%)</td><td>DataReportal 2025</td></tr>
+      <tr><td>eCommerce Market</td><td>$1.51B (2024)</td><td>U.S. International Trade Administration</td></tr>
+      <tr><td><strong>Direct Competitors in Cambodia</strong></td><td><strong>0</strong></td><td>Primary market research</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- FINANCIALS -->
+<section id="financials" style="background:rgba(245,158,11,0.015);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Financial Projections</div>
+      <h2>Path to <span>$1M</span> in Year 1</h2>
+      <p>$80,000 seeds a $1M+ Year 1 revenue business. Break-even by Month 3. 53.8% net margin.</p>
+    </div>
+    <div class="grid-4">
+      <div class="card"><div class="stat">$1,097,421</div><div class="stat-label">Year 1 Revenue</div></div>
+      <div class="card"><div class="stat">$589,826</div><div class="stat-label">Year 1 Net Profit</div></div>
+      <div class="card"><div class="stat">53.8%</div><div class="stat-label">Net Margin</div></div>
+      <div class="card"><div class="stat">Month 3</div><div class="stat-label">Break-Even</div></div>
+    </div>
+    <table style="margin-top:24px;">
+      <tr><th>Stream</th><th>Price</th><th>Volume</th><th>Revenue</th></tr>
+      <tr><td>Blind Box Keychain</td><td>$19.00</td><td>52,632 units</td><td>$1,000,008</td></tr>
+      <tr><td>Premium Subscriptions</td><td>$1.99/mo</td><td>~4,925 avg subscribers</td><td>$97,413</td></tr>
+      <tr style="font-weight:700;"><td><strong>Total</strong></td><td></td><td>21,000 customers</td><td><strong>$1,097,421</strong></td></tr>
+    </table>
+    <div class="highlight-box" style="margin-top:24px;">
+      <p style="margin:0;font-size:14px;"><strong>Unit Economics:</strong> $19 retail → $6.21 COGS → <strong>$12.79 gross profit (67.3% margin).</strong> Server cost: $7/month (Hetzner VPS). No Google Maps API fees (OpenStreetMap is $0).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Product Roadmap</div>
+      <h2>Development <span>Phases</span></h2>
+    </div>
+    <div class="grid-3">
+      <div class="card" style="border-top:4px solid var(--primary);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--primary);margin-bottom:6px;">Phase 1 · Now</div>
+        <h3>Social Map MVP</h3>
+        <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Months 1-3</p>
+        <ul style="list-style:none;font-size:13px;color:var(--text-muted);">
+          <li style="padding:3px 0;">✅ Dark PP map with OSM tiles</li>
+          <li style="padding:3px 0;">✅ GPS cat tracking (3,000+ POIs)</li>
+          <li style="padding:3px 0;">✅ 7 geofenced check-in zones</li>
+          <li style="padding:3px 0;">🔄 React Native app (iOS + Android)</li>
+          <li style="padding:3px 0;">🔲 Auth, friends, WebSocket sync</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:4px solid #8b5cf6;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#8b5cf6;margin-bottom:6px;">Phase 2 · Seed Funded</div>
+        <h3>Hardware + Monetization</h3>
+        <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Months 3-6</p>
+        <ul style="list-style:none;font-size:13px;color:var(--text-muted);">
+          <li style="padding:3px 0;">🔲 BLE keychain blind box (10 designs)</li>
+          <li style="padding:3px 0;">🔲 QR code registration &amp; wardrobe</li>
+          <li style="padding:3px 0;">🔲 Premium $1.99/mo subscription</li>
+          <li style="padding:3px 0;">🔲 Duplicate exchange system</li>
+          <li style="padding:3px 0;">🔲 Merchant partner portal</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:4px solid #6b7280;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7280;margin-bottom:6px;">Phase 3 · Series A</div>
+        <h3>Scale + Regional</h3>
+        <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Months 6-12</p>
+        <ul style="list-style:none;font-size:13px;color:var(--text-muted);">
+          <li style="padding:3px 0;">🔲 AI cat chat (DeepSeek V4 Pro)</li>
+          <li style="padding:3px 0;">🔲 Siem Reap / Battambang</li>
+          <li style="padding:3px 0;">🔲 Thailand pilot (Bangkok)</li>
+          <li style="padding:3px 0;">🔲 Seasonal events pipeline</li>
+          <li style="padding:3px 0;">🔲 Regional Series A fundraising</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTMENT -->
+<section id="investment" style="background:rgba(245,158,11,0.015);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Investment Rounds</div>
+      <h2>Funding the <span>Future</span></h2>
+    </div>
+    <div class="grid-3">
+      <div class="round">
+        <div class="phase">Now · Q3 2026</div>
+        <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-top:8px;">Seed Round</div>
+        <div class="amount">$80,000</div>
+        <div class="equity">12-15% Equity · $500K Pre</div>
+        <ul>
+          <li>App launch (iOS + Android)</li>
+          <li>3,000 pilot BLE keychains</li>
+          <li>RUPP campus activation</li>
+          <li>TikTok influencer campaign</li>
+          <li>12-month runway</li>
+        </ul>
+      </div>
+      <div class="round">
+        <div class="phase upcoming">Q2 2027</div>
+        <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-top:8px;">Series A</div>
+        <div class="amount">$750,000</div>
+        <div class="equity">15-20% · $3-5M Pre</div>
+        <ul>
+          <li>Thailand / Vietnam expansion</li>
+          <li>50,000 unit hardware order</li>
+          <li>AI cat features (DeepSeek)</li>
+          <li>6-person team</li>
+          <li>Trigger: $1M+ ARR, 50K+ users</li>
+        </ul>
+      </div>
+      <div class="round">
+        <div class="phase future">Q2 2028</div>
+        <div style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-top:8px;">Series B</div>
+        <div class="amount">$5,000,000</div>
+        <div class="equity">Growth · $20-30M Pre</div>
+        <ul>
+          <li>Full SE Asia rollout</li>
+          <li>BLE v2 hardware</li>
+          <li>50-person team</li>
+          <li>AI fine-tuned model</li>
+          <li>Trigger: $5M+ ARR, 200K+ users</li>
+        </ul>
+      </div>
+    </div>
+    <table style="margin-top:28px;">
+      <tr><th>Category</th><th>Amount</th><th>%</th></tr>
+      <tr><td>Hardware Tooling (10 molds)</td><td>$35,000</td><td>43.8%</td></tr>
+      <tr><td>Pilot Manufacturing (3,000 units)</td><td>$18,630</td><td>23.3%</td></tr>
+      <tr><td>Launch Marketing (90 days)</td><td>$8,500</td><td>10.6%</td></tr>
+      <tr><td>PCB Design + BLE Cert</td><td>$5,000</td><td>6.2%</td></tr>
+      <tr><td>App Development</td><td>$5,124</td><td>6.4%</td></tr>
+      <tr><td>Packaging + Printing</td><td>$2,500</td><td>3.1%</td></tr>
+      <tr><td>Legal + Accounting</td><td>$2,000</td><td>2.5%</td></tr>
+      <tr><td>Contingency</td><td>$2,746</td><td>3.4%</td></tr>
+      <tr><td>Server + Infrastructure (Year 1)</td><td>$500</td><td>0.6%</td></tr>
+      <tr style="font-weight:700;color:var(--primary);"><td><strong>Total</strong></td><td><strong>$80,000</strong></td><td><strong>100%</strong></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- DOCS -->
+<section id="docs">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Due Diligence</div>
+      <h2>Download <span>Documents</span></h2>
+      <p>View in browser or <strong>File → Print → Save as PDF</strong>.</p>
+    </div>
+    <div class="doc-list">
+      <div class="doc-item">
+        <div class="info">
+          <div class="title">📑 Full Investment Memorandum</div>
+          <div class="desc">Business plan · Market analysis · SWOT · v1/v2/v3 roadmap · Financial projections · Seed/Series A/B</div>
+        </div>
+        <a class="doc-btn" href="investment-memorandum.html" target="_blank">View →</a>
+      </div>
+      <div class="doc-item">
+        <div class="info">
+          <div class="title">📊 User Research Report</div>
+          <div class="desc">Cookiy AI synthetic interviews · 3 Cambodian personas · Pricing &amp; privacy insights</div>
+        </div>
+        <a class="doc-btn" href="user-research-report.html" target="_blank">View →</a>
+      </div>
+      <div class="doc-item">
+        <div class="info">
+          <div class="title">⚡ MiroFish Simulation Report (English)</div>
+          <div class="desc">50 users · 72 rounds · Multi-agent market simulation · Purchase intent · Subscription analysis</div>
+        </div>
+        <a class="doc-btn" href="mirofish-simulation-report.html" target="_blank">View →</a>
+      </div>
+      <div class="doc-item">
+        <div class="info">
+          <div class="title">⚡ MiroFish Simulation Report (中文)</div>
+          <div class="desc">Detailed Chinese-language simulation analysis with segment-by-segment breakdown</div>
+        </div>
+        <a class="doc-btn" href="mirofish-simulation-report-zh.html" target="_blank">View →</a>
+      </div>
+      <div class="doc-item">
+        <div class="info">
+          <div class="title">🎨 DESIGN.md (Stitch Design System)</div>
+          <div class="desc">Google Stitch-compatible design tokens · 13 colors · 13 components · WCAG validated</div>
+        </div>
+        <a class="doc-btn" href="DESIGN.md" target="_blank">View →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:rgba(245,158,11,0.015);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Get In Touch</div>
+      <h2>Interested in <span>Investing</span>?</h2>
+      <p>Request the full investment memorandum, financial model, or schedule a call.</p>
+    </div>
+    <div class="contact-form">
+      <form action="mailto:seavniv@gmail.com" method="GET" enctype="text/plain" onsubmit="return handleSubmit(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>I am a...</label>
+          <select name="type">
+            <option value="Angel / Venture Investor">Angel / Venture Investor</option>
+            <option value="Strategic Partner">Strategic / Business Partner</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" placeholder="Tell me about yourself and your interest..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:16px;">Submit Inquiry</button>
+      </form>
+      <div id="form-success" style="display:none;text-align:center;padding:30px;">
+        <div style="font-size:48px;margin-bottom:10px;">📨</div>
+        <div style="font-size:18px;font-weight:600;color:#10b981;">Message Sent!</div>
+        <div style="font-size:14px;color:var(--text-muted);margin-top:4px;">I'll respond within 24 hours.</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:20px;">
+      <p style="color:var(--text-on-dark-muted);font-size:13px;">Or reach me directly:</p>
+      <p style="font-size:16px;color:var(--primary);font-weight:600;">seavniv@gmail.com</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p style="font-family:'Playfair Display',serif;font-size:18px;">Cat <span style="color:var(--primary);">AI</span></p>
+    <p style="margin-top:4px;font-size:12px;">Phnom Penh, Cambodia · Confidential · © 2026</p>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const name = form.name.value, email = form.email.value, type = form.type.value, msg = form.message.value;
+  const subj = encodeURIComponent(`Cat AI Investor Inquiry — ${name}`);
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nType: ${type}\n\nMessage:\n${msg}`);
+  window.location.href = `mailto:seavniv@gmail.com?subject=${subj}&body=${body}`;
+  document.querySelector('.contact-form form').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+  return false;
+}
+</script>
+</body>
+</html>
