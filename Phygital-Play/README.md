@@ -25,31 +25,19 @@ A "Phygital" (Physical + Digital) virtual pet ecosystem launching in **Phnom Pen
 ## 📂 Repository Structure
 
 ```
-📁 cat-ai/
+📁 business-idea-cambodia/
 │
-├── 📄 index.html                         → 🇬🇧 ENGLISH WEBSITE (main landing page)
-├── 📄 index-kh.html                      → 🇰🇭 KHMER WEBSITE
-│
-├── 📄 investment-memorandum.html         → 📑 FULL BUSINESS PLAN
-│     Business plan · Market analysis · SWOT · Financial projections
-│     Product roadmap (v1/v2/v3) · Investment rounds (Seed/Series A/B)
-│
-├── 📄 user-research-report.html          → 📊 USER RESEARCH REPORT
-│     Cookiy AI synthetic interviews · 3 Cambodian personas
-│     Pricing validation · Privacy insights · Feature priorities
-│
-├── 📄 mirofish-simulation-report.html    → ⚡ MIROFISH SIMULATION (English)
-│     50 users · 72 rounds · Multi-agent market simulation
-│     Purchase intent · Subscription analysis · Merchant validation
-│
-├── 📄 mirofish-simulation-report-zh.html → ⚡ MIROFISH SIMULATION (中文)
-│     Chinese-language analysis with segment-by-segment breakdown
-│
-└── 📄 DESIGN.md                          → 🎨 GOOGLE STITCH DESIGN TOKENS
-      13 colors · 13 components · WCAG validated
-```
-
----
+└── 📁 Phygital-Play/                    ← 🐱 Cat AI investor package
+    │
+    ├── 📄 index.html                    → 🇬🇧 ENGLISH WEBSITE
+    ├── 📄 index-kh.html                 → 🇰🇭 KHMER WEBSITE
+    │
+    ├── 📄 investment-memorandum.html    → 📑 FULL BUSINESS PLAN
+    ├── 📄 user-research-report.html     → 📊 USER RESEARCH REPORT
+    ├── 📄 mirofish-simulation-report.html   → ⚡ MIROFISH (English)
+    ├── 📄 mirofish-simulation-report-zh.html → ⚡ MIROFISH (中文)
+    │
+    └── 📄 DESIGN.md                     → 🎨 STITCH DESIGN TOKENS
 
 ## 🚀 Quick Start
 
